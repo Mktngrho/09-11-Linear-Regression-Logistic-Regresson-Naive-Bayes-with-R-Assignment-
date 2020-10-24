@@ -1,0 +1,41 @@
+---
+title: "Simple dan Multiple Logistic Regression"
+output:
+html_document:
+df_print: paged
+---
+#19523047_Muchmmad_Okto_Nugroho & 19523198_M_Ihsan_Nurulhuda
+
+
+```{r}
+library(readr)
+framingham_heart_disease <- read_csv("c:/Users/ASUS 10.1/Downloads/framingham_heart_disease.csv")
+View(framingham_heart_disease)
+```
+
+```{r}
+dt <- subset(framingham_heart_disease, select = c(age, currentSmoker, TenYearCHD))
+dt
+```
+
+```{r}
+fit <- glm(formula = TenYearCHD~age, data = framingham_heart_disease, family = binomial)
+summary(fit)
+```
+
+```{r}
+library(ggplot2)
+```
+```{r}
+ggplot(dt, aes(x=age, y=TenYearCHD)) +geom_point() + stat_smooth(method = "glm", method.args = list(family="binomial"), se=FALSE)
+```
+
+```{r}
+fit2 <- glm(formula = TenYearCHD~age+currentSmoker, data = framingham_heart_disease, family = binomial)
+summary(fit2)
+```
+```{r}
+library(predict3d)
+ggPredict(fit2)
+```
+

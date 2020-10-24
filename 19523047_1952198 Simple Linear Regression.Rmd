@@ -1,0 +1,40 @@
+---
+title: "Simple Linear Regression"
+output:
+  html_document:
+    df_print: paged
+---
+#19523047_Muchmmad_Okto_Nugroho & 19523198_M_Ihsan_Nurulhuda
+
+
+```{r}
+library(readr)
+framingham_heart_disease <- read_csv("c:/Users/ASUS 10.1/Downloads/framingham_heart_disease.csv")
+View(framingham_heart_disease)
+```
+
+
+```{r}
+head(framingham_heart_disease)
+```
+```{r}
+new_dt <- subset(framingham_heart_disease, select = c(age, BMI))
+new_dt
+```
+
+```{r}
+fit <-lm(age~BMI, data = framingham_heart_disease)
+summary(fit)
+```
+
+```{r}
+library(predict3d)
+```
+
+```{r}
+ggPredict(fit)
+```
+```{r}
+ggPredict(fit, xpos = 0.75, vjust = 1.5, show.error = TRUE)
+```
+

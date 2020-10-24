@@ -1,0 +1,35 @@
+---
+title: "Multiple Linier Regression"
+output:
+html_document:
+df_print: paged
+---
+#19523047_Muchmmad_Okto_Nugroho & 19523198_M_Ihsan_Nurulhuda
+```{r}
+library(readr)
+framingham_heart_disease <- read_csv("c:/Users/ASUS 10.1/Downloads/framingham_heart_disease.csv")
+View(framingham_heart_disease)
+```
+
+
+```{r}
+head(framingham_heart_disease)
+```
+
+```{r}
+framingham_heart_disease$TenYearCHD = ifelse(framingham_heart_disease$currentSmoker ==1,"yes", "no")
+fit <- lm(age~education+TenYearCHD, data = framingham_heart_disease)
+summary(fit)
+```
+```{r}
+library(predict3d)
+```
+
+```{r}
+ggPredict(fit)
+```
+
+```{r}
+ggPredict(fit, show.error =TRUE, facet.modx = TRUE, show.text = FALSE)
+```
+

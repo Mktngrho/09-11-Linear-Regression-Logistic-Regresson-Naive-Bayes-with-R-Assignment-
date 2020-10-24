@@ -1,0 +1,45 @@
+---
+title: "Naive Bayes"
+output:
+html_document:
+df_print: paged
+---
+#19523047_Muchmmad_Okto_Nugroho & 19523198_M_Ihsan_Nurulhuda
+```{r}
+library(readr)
+team <- read_csv("c:/Users/ASUS 10.1/Downloads/Team.csv")
+View(team)
+```
+
+```{r}
+str(team)
+```
+```{r}
+library(e1071)
+```
+
+
+```{r}
+Naive_Bayes_Model= naiveBayes(y_status ~., data=team)
+Naive_Bayes_Model
+```
+
+
+```{r}
+newData <- data.frame(x1_cuaca = "hujan", x2_suhu = "sedang", x3_kelembaban = "tinggi", x4_berangin = "tidak", y_status="")
+newData
+```
+
+```{r}
+vector_prediction = predict(Naive_Bayes_Model, newData, type = "raw")
+vp = vector_prediction
+vp
+```
+```{r}
+yhat_status = colnames(vp)[max.col(vp,ties.method="first")]
+sprintf("y_hat for the new data is '%s'",yhat_status)
+newData$y_status <- yhat_status
+newData
+```
+
+
